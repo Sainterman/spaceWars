@@ -15,4 +15,10 @@ CONFIG   -= app_bundle
 TEMPLATE = app
 
 
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    consoleTools/basicGraphic/basicgraphic.cpp \
+    point.cpp
+
+HEADERS += \
+    consoleTools/basicGraphic/basicgraphic.h \
+    point.h
