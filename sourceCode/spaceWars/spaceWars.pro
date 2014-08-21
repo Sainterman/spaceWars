@@ -18,9 +18,11 @@ TEMPLATE = app
 SOURCES += main.cpp \
     consoleTools/basicGraphic/basicgraphic.cpp \
     point.cpp \
-    graphicchar.cpp
+    graphicchar.cpp \
+    graphicobjects.cpp
 
 HEADERS += \
     consoleTools/basicGraphic/basicgraphic.h \
     point.h \
-    graphicchar.h
+    graphicchar.h \
+    graphicobjects.h
