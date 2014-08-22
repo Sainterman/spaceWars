@@ -2,13 +2,12 @@
 #define GRAPHICOBJECTS_H
 #include "graphicchar.h"
 #include <QList>
-
 class graphicObjects
 {
 private:
     char _direction;
     point _pos;
-    QList <graphicChar> _grapRight, _grapLeft, grapUp, grapDown;
+    QList <graphicChar> _graphRight, _graphLeft, graphUp, graphDown;
     float _speed;
     int _fieldLimtRight, _fieldLimitLeft, _fieldLimitTop, _fieldLimitBot;
     QList <point> _hitAreaRight, _hitAreaLeft, _hitAreaUp, _hitAreaDown;
