@@ -2,6 +2,10 @@
 #define GRAPHICOBJECTS_H
 #include "graphicchar.h"
 #include <QList>
+#define DIR_RIGHT 0
+#define DIR_LEFT 2
+#define DIR_TOP 1
+#define DIR_DOWN 3
 class graphicObjects
 {
 private:
@@ -21,7 +25,7 @@ public:
     //Initialize all members
     graphicObjects();
     int paint();
-    int tic(double time);
+    int tic(double time);//time en milisegundos
     int checkHit(point p);
     int checkHit(QList<point>points);
 

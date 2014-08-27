@@ -30,6 +30,32 @@ int main(int argc, char *argv[])
     graphicChar c24(point(4,4),'\\',BG_RED);
     graphicChar c25(point(5,4),'\\',BG_BLUE);
 
+    graphicChar b1(point(4,0),'\\',BG_RED);
+    graphicChar b2(point(5,0),'\\',BG_BLUE);
+    graphicChar b3(point(1,1),'>',BG_GREEN);
+    graphicChar b4(point(2,1),'|',BG_GREEN);
+    graphicChar b5(point(3,1),219,BG_GREEN);
+    graphicChar b6(point(4,1),219,BG_GREEN);
+    graphicChar b7(point(5,1),219,BG_RED);
+    graphicChar b8(point(6,1),219,BG_YELLOW);
+    graphicChar b9(point(0,2),'>',BG_RED);
+    graphicChar b10(point(1,2),'|',BG_BLUE);
+    graphicChar b11(point(2,2),3,BG_BLUE);
+    graphicChar b12(point(3,2),4,BG_WHITE);
+    graphicChar b13(point(4,2),5,BG_WHITE);
+    graphicChar b14(point(5,2),6,BG_WHITE);
+    graphicChar b15(point(6,2),219,BG_WHITE);
+    graphicChar b16(point(7,2),219,BG_RED);
+    graphicChar b17(point(8,2),16,BG_YELLOW);
+    graphicChar b18(point(1,3),'>',BG_GREEN);
+    graphicChar b19(point(2,3),'|',BG_GREEN);
+    graphicChar b20(point(3,3),219,BG_GREEN);
+    graphicChar b21(point(4,3),219,BG_GREEN);
+    graphicChar b22(point(5,3),219,BG_RED);
+    graphicChar b23(point(6,3),219,BG_YELLOW);
+    graphicChar b24(point(4,4),'/',BG_RED);
+    graphicChar b25(point(5,4),'/',BG_BLUE);
+
 
     point offset(10,10);
     c1.paint(offset);
@@ -57,6 +83,33 @@ int main(int argc, char *argv[])
     c23.paint(offset);
     c24.paint(offset);
     c25.paint(offset);
+
+    point offsetR(5,5);
+    b1.paint(offsetR);
+    b2.paint(offsetR);
+    b3.paint(offsetR);
+    b4.paint(offsetR);
+    b5.paint(offsetR);
+    b6.paint(offsetR);
+    b7.paint(offsetR);
+    b8.paint(offsetR);
+    b9.paint(offsetR);
+    b10.paint(offsetR);
+    b11.paint(offsetR);
+    b12.paint(offsetR);
+    b13.paint(offsetR);
+    b14.paint(offsetR);
+    b15.paint(offsetR);
+    b16.paint(offsetR);
+    b17.paint(offsetR);
+    b18.paint(offsetR);
+    b19.paint(offsetR);
+    b20.paint(offsetR);
+    b21.paint(offsetR);
+    b22.paint(offsetR);
+    b23.paint(offsetR);
+    b24.paint(offsetR);
+    b25.paint(offsetR);
 
     bg::gotoxy(0,20);
 
