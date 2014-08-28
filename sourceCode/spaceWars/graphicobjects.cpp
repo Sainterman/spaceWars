@@ -3,7 +3,7 @@
 graphicObjects::graphicObjects()
 {
     _direction = 0;
-    _pos = (0,0);
+    _pos = point(0,0);
     //Graphic when pos is right
     _graphRight.append(graphicChar(point(0,0),'?'));
     _graphRight.append(graphicChar(point(1,0),'>'));

@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     graphicChar c25(point(5,4),'\\',BG_BLUE);
 
 
-    point offset(10,10);
+    point offset(20,15);
     c1.paint(offset);
     c2.paint(offset);
     c3.paint(offset);
