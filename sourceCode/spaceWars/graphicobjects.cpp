@@ -2,6 +2,8 @@
 
 graphicObjects::graphicObjects()
 {
+
+    _direction = 0;
     _direction = DIR_LEFT;
     _pos = point(0,0);
     //Graphic when pos is right

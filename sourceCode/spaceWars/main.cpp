@@ -130,7 +130,7 @@ int main(int argc, char *argv[])
     graphicChar d33(point(4,5),31,BG_RED);
 
 
-    point offset(10,10);
+    point offset(20,15);
     c1.paint(offset);
     c2.paint(offset);
     c3.paint(offset);
