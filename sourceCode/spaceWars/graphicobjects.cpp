@@ -128,7 +128,7 @@ int graphicObjects::tic(double time)
     }
 
     //If objInside=true
-    if(objInside=true)
+    if(objInside==true)
     {
         _pos=newPos;
     }
@@ -157,9 +157,139 @@ int graphicObjects::tic(double time)
 int graphicObjects::checkHit(point p)
 {
 
+    p.setX(p.x()-_pos.x());//transformar de global a local
+    p.setY(p.y()-_pos.x());
+
+    ///Grabbing reference of current hit Area
+    QList<point>* currentHitArea;
+    switch(_direction)
+    {
+    case DIR_RIGHT:
+        currentHitArea=&_hitAreaRight;
+        break;
+    case DIR_LEFT:
+        currentHitArea=&_hitAreaLeft;
+        break;
+    case DIR_DOWN:
+        currentHitArea=&_hitAreaDown;
+        break;
+    case DIR_TOP:
+        currentHitArea=&_hitAreaUp;
+        break;
+    }
+
+    for(int i=0;i<currentHitArea->size();i++){
+        if(p==currentHitArea->at(i))
+            return 1;
+    }
+    return 0;
+
 }
 
-int graphicObjects::checkHit(QList<point> points)
+int graphicObjects::checkHit(const QList<point> &points)
 {
+    ///Check point to point
+    int countPoints=0;
+    for(int i=0;i<points.size();i++)
+        countPoints += checkHit(points[i]);
+
+    return countPoints;
 
 }
+
+void graphicObjects::setPos(int x, int y)
+{
+    _pos.setX(x);
+    _pos.setY(y);
+}
+
+void graphicObjects::setSpeed(float s)
+{
+    _speed=s;
+}
+
+void graphicObjects::setFieldLimits(int R, int L, int T, int B)
+{
+    _fieldLimtRight=R;
+    _fieldLimitLeft=L;
+    _fieldLimitTop=T;
+    _fieldLimitBot=B;
+}
+
+bool graphicObjects::setDir(char dir)
+{
+    if (dir>3 || dir<0)//validar
+       return false;
+
+
+
+
+    ///]Referencia del actual hit area
+
+
+    QList<point>* currentHitArea;
+    switch(_direction)
+    {
+    case DIR_RIGHT:
+        currentHitArea=&_hitAreaRight;
+        break;
+    case DIR_LEFT:
+        currentHitArea=&_hitAreaLeft;
+        break;
+    case DIR_DOWN:
+        currentHitArea=&_hitAreaDown;
+        break;
+    case DIR_TOP:
+        currentHitArea=&_hitAreaUp;
+        break;
+    }
+
+    if(currentHitArea->size()==0)
+        return false;
+
+    int maxX=currentHitArea->at(0).x();
+    int minX=currentHitArea->at(0).x();
+    int maxY=currentHitArea->at(0).y();
+    int minY=currentHitArea->at(0).y();
+
+    for (int i=0; i<currentHitArea->size();i++)
+    {
+        if(currentHitArea->at(i).x()>maxX)
+            maxX=currentHitArea->at(i).x();
+        if(currentHitArea->at(i).x()<minX)
+            minX=currentHitArea->at(i).x();
+        if(currentHitArea->at(i).y()>maxY)
+            maxY=currentHitArea->at(i).y();
+        if(currentHitArea->at(i).y()<minY)
+            minY=currentHitArea->at(i).y();
+    }
+    _edgeRight=maxX;
+    _edgeLeft=minX;
+    _edgeBot=maxY;
+    _edgeTop=minY;
+
+
+
+    _direction=dir;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

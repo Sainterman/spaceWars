@@ -1,9 +1,11 @@
 #include <iostream>
 #include "consoleTools/basicGraphic/basicgraphic.h"
 #include "graphicchar.h"
+#include "graphicobjects.h"
 
 int main(int argc, char *argv[])
 {
+    /*
     graphicChar c1(point(4,0),'/',BG_RED);
     graphicChar c2(point(5,0),'/',BG_BLUE);
     graphicChar c3(point(3,1),219,BG_GREEN);
@@ -55,6 +57,77 @@ int main(int argc, char *argv[])
     graphicChar b23(point(6,3),219,BG_YELLOW);
     graphicChar b24(point(4,4),'/',BG_RED);
     graphicChar b25(point(5,4),'/',BG_BLUE);
+
+    //Upside ship
+
+    graphicChar a1(point(4,0),30,BG_RED);
+    graphicChar a2(point(2,1),219,BG_RED);
+    graphicChar a3(point(3,1),219,BG_RED);
+    graphicChar a4(point(4,1),3,BG_RED);
+    graphicChar a5(point(5,1),219,BG_RED);
+    graphicChar a6(point(6,1),219,BG_RED);
+    graphicChar a7(point(1,2),'/',BG_RED);
+    graphicChar a8(point(2,2),219,BG_RED);
+    graphicChar a9(point(3,2),219,BG_RED);
+    graphicChar a10(point(4,2),4,BG_RED);
+    graphicChar a11(point(5,2),219,BG_RED);
+    graphicChar a12(point(6,2),219,BG_RED);
+    graphicChar a13(point(7,2),'\\',BG_RED);
+    //graphicChar a14(point(0,3),'/',BG_RED);
+    graphicChar a15(point(1,3),'/',BG_RED);
+    graphicChar a16(point(2,3),219,BG_RED);
+    graphicChar a17(point(3,3),219,BG_RED);
+    graphicChar a18(point(4,3),5,BG_RED);
+    graphicChar a19(point(5,3),219,BG_RED);
+    graphicChar a20(point(6,3),219,BG_RED);
+    graphicChar a21(point(7,3),'\\',BG_RED);
+    //graphicChar a22(point(8,3),'\\',BG_RED);
+    graphicChar a23(point(2,4),'-',BG_RED);
+    graphicChar a24(point(3,4),'-',BG_RED);
+    graphicChar a25(point(4,4),4,BG_RED);
+    graphicChar a26(point(5,4),'-',BG_RED);
+    graphicChar a27(point(6,4),'-',BG_RED);
+    graphicChar a28(point(2,5),'^',BG_RED);
+    graphicChar a29(point(3,5),'^',BG_RED);
+    graphicChar a30(point(4,5),'-',BG_RED);
+    graphicChar a31(point(5,5),'^',BG_RED);
+    graphicChar a32(point(6,5),'^',BG_RED);
+
+    //downside ship
+
+    graphicChar d1(point(2,0),30,BG_RED);
+    graphicChar d2(point(3,0),30,BG_RED);
+    graphicChar d3(point(4,0),30,BG_RED);
+    graphicChar d4(point(5,0),30,BG_RED);
+    graphicChar d5(point(6,0),30,BG_RED);
+    graphicChar d6(point(2,1),254,BG_RED);
+    graphicChar d7(point(3,1),254,BG_RED);
+    graphicChar d8(point(4,1),254,BG_RED);
+    graphicChar d9(point(5,1),254,BG_RED);
+    graphicChar d10(point(6,1),254,BG_RED);
+    graphicChar d11(point(0,2),'\\',BG_RED);
+    graphicChar d12(point(1,2),'\\',BG_RED);
+    graphicChar d13(point(2,2),219,BG_RED);
+    graphicChar d14(point(3,2),219,BG_RED);
+    graphicChar d15(point(4,2),3,BG_RED);
+    graphicChar d16(point(5,2),219,BG_RED);
+    graphicChar d17(point(6,2),219,BG_RED);
+    graphicChar d18(point(7,2),'/',BG_RED);
+    graphicChar d19(point(8,2),'/',BG_RED);
+    graphicChar d20(point(1,3),'\\',BG_RED);
+    graphicChar d21(point(2,3),219,BG_RED);
+    graphicChar d22(point(3,3),219,BG_RED);
+    graphicChar d23(point(4,3),4,BG_RED);
+    graphicChar d24(point(5,3),219,BG_RED);
+    graphicChar d25(point(6,3),219,BG_RED);
+    graphicChar d26(point(7,3),'/',BG_RED);
+    graphicChar d27(point(6,3),254,BG_RED);
+    graphicChar d28(point(2,4),31,BG_RED);
+    graphicChar d29(point(3,4),31,BG_RED);
+    graphicChar d30(point(4,4),31,BG_RED);
+    graphicChar d31(point(5,4),31,BG_RED);
+    graphicChar d32(point(6,4),31,BG_RED);
+    graphicChar d33(point(4,5),31,BG_RED);
 
 
     point offset(10,10);
@@ -111,7 +184,127 @@ int main(int argc, char *argv[])
     b24.paint(offsetR);
     b25.paint(offsetR);
 
-    bg::gotoxy(0,20);
+    point offsetU(10,25);
+    a1.paint(offsetU);
+    a2.paint(offsetU);
+    a3.paint(offsetU);
+    a4.paint(offsetU);
+    a5.paint(offsetU);
+    a6.paint(offsetU);
+    a7.paint(offsetU);
+    a8.paint(offsetU);
+    a9.paint(offsetU);
+    a10.paint(offsetU);
+    a11.paint(offsetU);
+    a12.paint(offsetU);
+    a13.paint(offsetU);
+   // a14.paint(offsetU);
+    a15.paint(offsetU);
+    a16.paint(offsetU);
+    a17.paint(offsetU);
+    a18.paint(offsetU);
+    a19.paint(offsetU);
+    a20.paint(offsetU);
+    a21.paint(offsetU);
+    //a22.paint(offsetU);
+    a23.paint(offsetU);
+    a24.paint(offsetU);
+    a25.paint(offsetU);
+    a26.paint(offsetU);
+    a27.paint(offsetU);
+    a28.paint(offsetU);
+    a29.paint(offsetU);
+    a30.paint(offsetU);
+    a31.paint(offsetU);
+    a32.paint(offsetU);
+
+    point offsetD(15,20);
+    d1.paint(offsetD);
+    d2.paint(offsetD);
+    d3.paint(offsetD);
+    d4.paint(offsetD);
+    d5.paint(offsetD);
+    d6.paint(offsetD);
+    d7.paint(offsetD);
+    d8.paint(offsetD);
+    d9.paint(offsetD);
+    d10.paint(offsetD);
+    d11.paint(offsetD);
+    d12.paint(offsetD);
+    d13.paint(offsetD);
+    d14.paint(offsetD);
+    d15.paint(offsetD);
+    d16.paint(offsetD);
+    d17.paint(offsetD);
+    d18.paint(offsetD);
+    d19.paint(offsetD);
+    d20.paint(offsetD);
+    d21.paint(offsetD);
+    d22.paint(offsetD);
+    d23.paint(offsetD);
+    d24.paint(offsetD);
+    d25.paint(offsetD);
+    d26.paint(offsetD);
+    d27.paint(offsetD);
+    d28.paint(offsetD);
+    d29.paint(offsetD);
+    d30.paint(offsetD);
+    d31.paint(offsetD);
+    d32.paint(offsetD);
+    d33.paint(offsetD);
+    */
+
+
+
+
+    graphicObjects prueba;
+
+    prueba.setFieldLimits(50,0,0,8);
+    prueba.setDir(DIR_RIGHT);
+    prueba.setSpeed(0.002);
+    prueba.setPos(3,3);
+
+    for(;;)
+    {
+        bg::clrscr();
+        prueba.paint();
+        prueba.tic(1000);
+        Sleep(1000);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    bg::gotoxy(0,40);
 
     return 0;
 }

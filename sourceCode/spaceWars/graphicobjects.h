@@ -6,6 +6,8 @@
 #define DIR_LEFT 2
 #define DIR_TOP 1
 #define DIR_DOWN 3
+
+
 class graphicObjects
 {
 private:
@@ -27,7 +29,11 @@ public:
     int paint();
     int tic(double time);//time en milisegundos
     int checkHit(point p);
-    int checkHit(QList<point>points);
+    int checkHit(const QList<point> &points);
+    void setPos(int x, int y);
+    void setSpeed(float s);
+    void setFieldLimits(int R, int L, int T, int B);
+    bool setDir(char dir);
 
 };
 
