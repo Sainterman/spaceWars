@@ -15,10 +15,16 @@ graphicChar::graphicChar(point pos, unsigned char ch, unsigned char colour)
 
 int graphicChar::paint(point offset)
 {
-    int x=offset.x()+ _pos.x();
-    int y=offset.y()+_pos.y();
+    int x = (int)(offset.x()+ _pos.x());
+    int y = (int)(offset.y()+_pos.y());
     bg::gotoxy(x,y);
     bg::setColor(_colour);
     std::cout<< _char;
+
+}
+
+point graphicChar::pos() const
+{
+    return _pos;
 
 }

@@ -19,10 +19,12 @@ SOURCES += main.cpp \
     consoleTools/basicGraphic/basicgraphic.cpp \
     point.cpp \
     graphicchar.cpp \
-    graphicobjects.cpp
+    graphicobjects.cpp \
+    ship.cpp
 
 HEADERS += \
     consoleTools/basicGraphic/basicgraphic.h \
     point.h \
     graphicchar.h \
-    graphicobjects.h
+    graphicobjects.h \
+    ship.h

@@ -4,15 +4,17 @@
 class point
 {
 private:
-    int _posX, _posY;
+    float _posX, _posY;
 
 public:
     point();
-    point(int x, int y);
-    void setX(int x);
-    void setY(int y);
-    int x() const;
-    int y() const;
+    point(float x, float y);
+    void setX(float x);
+    void setY(float y);
+    float x() const;
+    float y() const;
+    int xi() const;
+    int yi() const;
 
 };
 bool operator == (const point& p1,  const point& p2);//operador para comparar puntos

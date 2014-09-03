@@ -1,17 +1,16 @@
 #include "graphicobjects.h"
 
-graphicObjects::graphicObjects()
+
+
+void graphicObjects::initGraphicObject(point pos, float speed, char dir, int flR, int flL, int flT, int flB)
 {
 
-    _direction = 0;
-    _direction = DIR_LEFT;
-    _pos = point(0,0);
     //Graphic when pos is right
     _graphRight.append(graphicChar(point(0,0),'?'));
     _graphRight.append(graphicChar(point(1,0),'>'));
     //Graphic when pos is left
     _graphLeft.append(graphicChar(point(0,0),'<'));
-    _graphLeft.append(graphicChar(point(0,1),'?'));
+    _graphLeft.append(graphicChar(point(1,0),'?'));
     //Graphic when pos is down
     _graphDown.append(graphicChar(point(0,0),'?'));
     _graphDown.append(graphicChar(point(0,1),'V'));
@@ -19,14 +18,6 @@ graphicObjects::graphicObjects()
     _graphUp.append(graphicChar(point(0,0),'^'));
     _graphUp.append(graphicChar(point(0,1),'?'));
 
-    //Initialize speed = 0
-    _speed=0;
-
-    //Define gaming borders
-    _fieldLimitBot=0;
-    _fieldLimitLeft=0;
-    _fieldLimitTop=0;
-    _fieldLimtRight=0;
 
     //Define hit area
     _hitAreaRight.append(point(0,0));
@@ -38,14 +29,53 @@ graphicObjects::graphicObjects()
     _hitAreaUp.append(point(0,0));
     _hitAreaUp.append(point(0,1));
 
-    //define edges///usa esos valores porque por defecto dibuja la nave a la izquierda
-    _edgeRight=1;
-    _edgeLeft=0;
-    _edgeBot=0;
-    _edgeTop=0;
-
     //define hit power
     _hitPower=1;
+
+
+
+
+    setDir(dir);
+    setPos(pos);
+    setSpeed(speed);
+    setFieldLimits(flR,flL,flT,flB);
+
+
+}
+
+void graphicObjects::fillHitArea()
+{
+    _hitAreaRight.clear();
+    for(int i=0;i<_graphRight.size();i++)
+        _hitAreaRight.append(_graphRight[i].pos());
+
+    _hitAreaLeft.clear();
+    for(int i=0; i<_graphLeft.size(); i++)
+        _hitAreaLeft.append(_graphLeft[i].pos());
+
+    _hitAreaDown.clear();
+    for(int i=0; i<_graphDown.size();i++)
+        _hitAreaDown.append(_graphDown[i].pos());
+
+    _hitAreaUp.clear();
+    for(int i=0; i<_graphUp.size();i++)
+        _hitAreaUp.append(_graphUp[i].pos());
+
+}
+
+graphicObjects::graphicObjects()
+{
+    initGraphicObject(point(0,0),0,DIR_LEFT,0,0,0,0);
+
+
+
+}
+
+graphicObjects::graphicObjects(point pos, float speed, char dir, int flR, int flL, int flT, int flB)
+{
+    initGraphicObject(pos,speed,dir,flR,flL,flT,flB);
+
+
 
 }
 
@@ -109,19 +139,19 @@ int graphicObjects::tic(double time)
     switch(_direction)
     {
     case DIR_LEFT:
-        if(newPos.x() +_edgeLeft <= _fieldLimitLeft)
+        if(newPos.xi() +_edgeLeft <= _fieldLimitLeft)
             objInside=false;
         break;
     case DIR_RIGHT:
-        if(newPos.x() + _edgeRight >= _fieldLimtRight)
+        if(newPos.xi() + _edgeRight >= _fieldLimtRight)
             objInside=false;
         break;
     case DIR_DOWN:
-        if(newPos.y()+_edgeBot >=_fieldLimitBot)
+        if(newPos.yi()+_edgeBot >=_fieldLimitBot)
             objInside=false;
         break;
     case DIR_TOP:
-        if(newPos.y()<=_fieldLimitTop)
+        if(newPos.yi()<=_fieldLimitTop)
             objInside=false;
         break;
     default:
@@ -140,15 +170,19 @@ int graphicObjects::tic(double time)
         {
         case DIR_RIGHT:
             _pos.setX(_fieldLimtRight-_edgeRight-1);
+
             break;
         case DIR_LEFT:
             _pos.setX(_fieldLimitLeft+1);
+
             break;
         case DIR_DOWN:
             _pos.setY(_fieldLimitBot-_edgeBot -1);
+
             break;
         case DIR_TOP:
             _pos.setY(_fieldLimitTop+1);
+
             break;
         }
 
@@ -199,10 +233,14 @@ int graphicObjects::checkHit(const QList<point> &points)
 
 }
 
-void graphicObjects::setPos(int x, int y)
+void graphicObjects::setPos(float x, float y)
 {
-    _pos.setX(x);
-    _pos.setY(y);
+    setPos(point(x,y));
+}
+
+void graphicObjects::setPos(point p)
+{
+    _pos=p;
 }
 
 void graphicObjects::setSpeed(float s)
@@ -230,7 +268,7 @@ bool graphicObjects::setDir(char dir)
 
 
     QList<point>* currentHitArea;
-    switch(_direction)
+    switch(dir)
     {
     case DIR_RIGHT:
         currentHitArea=&_hitAreaRight;

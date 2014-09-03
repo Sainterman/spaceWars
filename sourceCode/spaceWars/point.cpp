@@ -7,34 +7,44 @@ point::point()
     point(0, 0);
 }
 
-point::point(int x, int y)
+point::point(float x, float y)
 {
     _posX=x;
     _posY=y;
 }
 
-void point::setX(int x)
+void point::setX(float x)
 {
     _posX=x;
 
 }
 
-void point::setY(int y)
+void point::setY(float y)
 {
     _posY=y;
 }
 
 
 
-int point::x() const
+float point::x() const
 {
     return _posX;
 
 }
 
-int point::y() const
+float point::y() const
 {
     return _posY;
+}
+
+int point::xi() const
+{
+    return (int)_posX;
+}
+
+int point::yi() const
+{
+    return (int)_posY;
 }
 
 

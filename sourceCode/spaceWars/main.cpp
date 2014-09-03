@@ -2,7 +2,7 @@
 #include "consoleTools/basicGraphic/basicgraphic.h"
 #include "graphicchar.h"
 #include "graphicobjects.h"
-
+#include "ship.h"
 int main(int argc, char *argv[])
 {
     /*
@@ -255,53 +255,54 @@ int main(int argc, char *argv[])
     */
 
 
+    /*
+    QList<graphicObjects> gos;
+    gos.append(graphicObjects(point(6,2),0.002,DIR_RIGHT,50,0,0,30));
+    gos.append(graphicObjects(point(0,4),0.003,DIR_RIGHT,50,0,0,30));
+    gos.append(graphicObjects(point(20,20),0.004,DIR_TOP,50,0,0,30));
+    gos.append(graphicObjects(point(50,10),0.01,DIR_LEFT,50,0,0,30));
+    gos.append(graphicObjects(point(0,5),0.007,DIR_DOWN,50,0,0,30));
+    gos.append(graphicObjects(point(21,30),0.006,DIR_TOP,50,0,0,30));
+    gos.append(graphicObjects(point(20,20),0.005,DIR_LEFT,50,0,0,30));
 
 
-    graphicObjects prueba;
-
-    prueba.setFieldLimits(50,0,0,8);
-    prueba.setDir(DIR_RIGHT);
-    prueba.setSpeed(0.002);
-    prueba.setPos(3,3);
 
     for(;;)
     {
         bg::clrscr();
-        prueba.paint();
-        prueba.tic(1000);
-        Sleep(1000);
+
+        for(int i=0;i<gos.size();i++)
+        {
+            gos[i].paint();
+            gos[i].tic(200);
+        }
+
+        Sleep(200);
+
+
     }
+*/
+    QList<ship> gos;
+    gos.append(ship(point(5,5),0.003,DIR_RIGHT,50,0,0,30));
+    gos.append(ship(point(5,5),0.003,DIR_DOWN,50,0,0,30));
 
 
 
 
+    for(;;)
+    {
+        bg::clrscr();
+
+        for(int i=0;i<gos.size();i++)
+        {
+            gos[i].paint();
+            gos[i].tic(200);
+        }
+
+        Sleep(200);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
     bg::gotoxy(0,40);
