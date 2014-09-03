@@ -285,8 +285,8 @@ int main(int argc, char *argv[])
     QList<ship> gos;
     gos.append(ship(point(5,5),0.003,DIR_RIGHT,50,0,0,30));
     gos.append(ship(point(5,5),0.003,DIR_DOWN,50,0,0,30));
-
-
+    gos.append(ship(point(10,30),0.002,DIR_TOP,50,0,0,30));
+    gos.append(ship(point(0,10),0.006,DIR_RIGHT,50,0,0,30));
 
 
     for(;;)
@@ -296,10 +296,10 @@ int main(int argc, char *argv[])
         for(int i=0;i<gos.size();i++)
         {
             gos[i].paint();
-            gos[i].tic(200);
+            gos[i].tic(1000);
         }
 
-        Sleep(200);
+        Sleep(100);
 
 
     }
