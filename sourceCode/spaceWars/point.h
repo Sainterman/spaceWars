@@ -6,6 +6,7 @@ class point
 private:
     float _posX, _posY;
 
+
 public:
     point();
     point(float x, float y);

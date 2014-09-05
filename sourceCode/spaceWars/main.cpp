@@ -282,12 +282,12 @@ int main(int argc, char *argv[])
 
     }
 */
-    QList<ship> gos;
-    gos.append(ship(point(5,5),0.003,DIR_RIGHT,50,0,0,30));
-    gos.append(ship(point(5,5),0.003,DIR_DOWN,50,0,0,30));
-    gos.append(ship(point(10,30),0.002,DIR_TOP,50,0,0,30));
-    gos.append(ship(point(0,10),0.006,DIR_RIGHT,50,0,0,30));
-
+    QList<graphicObjects*> gos;
+    gos.append(new ship(point(5,5),0.03,DIR_RIGHT,50,0,0,30));
+    gos.append(new ship(point(5,5),0.03,DIR_DOWN,50,0,0,30));
+    gos.append(new ship(point(10,30),0.02,DIR_TOP,50,0,0,30));
+    gos.append(new ship(point(0,10),0.05,DIR_RIGHT,50,0,0,30));
+    gos.append(new graphicObjects(point(2,15),0.05,DIR_RIGHT,50,0,0,30));
 
     for(;;)
     {
@@ -295,8 +295,8 @@ int main(int argc, char *argv[])
 
         for(int i=0;i<gos.size();i++)
         {
-            gos[i].paint();
-            gos[i].tic(1000);
+            gos[i]->paint();
+            gos[i]->tic(100);
         }
 
         Sleep(100);
