@@ -169,25 +169,25 @@ int graphicObjects::tic(double time)
         switch(_direction)
         {
         case DIR_RIGHT:
-            //_pos.setX(_fieldLimtRight-_edgeRight-1);
-            _direction=DIR_DOWN;
+            _pos.setX(_fieldLimtRight-_edgeRight-1);
+            //_direction=DIR_DOWN;
 
             break;
         case DIR_LEFT:
-            //_pos.setX(_fieldLimitLeft+1);
-            _direction=DIR_TOP;
+            _pos.setX(_fieldLimitLeft+1);
+            //_direction=DIR_TOP;
             break;
         case DIR_DOWN:
-            //_pos.setY(_fieldLimitBot-_edgeBot -1);
-            _direction=DIR_LEFT;
+            _pos.setY(_fieldLimitBot-_edgeBot -1);
+            //_direction=DIR_LEFT;
             break;
         case DIR_TOP:
-            //pos.setY(_fieldLimitTop+1);
-            _direction=DIR_RIGHT;
+            _pos.setY(_fieldLimitTop+1);
+            //_direction=DIR_RIGHT;
             break;
         }
 
-        //_speed=0;
+        _speed=0;
     }
 }
 
