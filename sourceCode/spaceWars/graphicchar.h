@@ -3,6 +3,7 @@
 #include "point.h"
 #include "consoleTools/basicGraphic/basicgraphic.h"
 #include <iostream>
+
 class graphicChar
 {
 private:

@@ -4,6 +4,7 @@
 #include "graphicobjects.h"
 #include "ship.h"
 #include <conio.h>
+#include "gamecontroller.h"
 int main(int argc, char *argv[])
 {
     /*
@@ -284,17 +285,19 @@ int main(int argc, char *argv[])
     }
 */
     QList<ship> gos;
-    gos.append(ship(point(5,5),0.0,DIR_RIGHT,70,0,0,30));
+    gos.append(ship(point(5,5),0.0,DIR_RIGHT,70,0,0,75));
     gos.last().confCmd('w','s','d','a',' ','m');
-    gos.append(ship(point(5,10),0.0,DIR_RIGHT,70,0,0,30));
+    gos.append(ship(point(5,10),0.0,DIR_RIGHT,70,0,0,75));
     gos.last().confCmd('5','2','3','1','0','.');
 
+    gameController SpaceWars;
 
 
 
     for(;;)
     {
         bg::clrscr();
+        SpaceWars.printUI();
 
         int k;
         k= (kbhit()!= 0)? getch() : -1;

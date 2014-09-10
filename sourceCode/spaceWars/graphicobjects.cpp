@@ -311,6 +311,8 @@ bool graphicObjects::setDir(char dir)
 
 
 
+
+
     _direction=dir;
 
 }
