@@ -284,7 +284,7 @@ int main(int argc, char *argv[])
 
     }
 */
-    QList<ship> gos;
+   /* QList<ship> gos;
     gos.append(ship(point(5,5),0.0,DIR_RIGHT,70,0,0,75));
     gos.last().confCmd('w','s','d','a',' ','m');
     gos.append(ship(point(5,10),0.0,DIR_RIGHT,70,0,0,75));
@@ -313,8 +313,9 @@ int main(int argc, char *argv[])
         Sleep(100);
 
 
-    }
-
+    }*/
+    gameController SpaceWars;
+    SpaceWars.run();
 
     bg::gotoxy(0,40);
 

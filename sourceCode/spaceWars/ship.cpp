@@ -1,6 +1,6 @@
 #include "ship.h"
 #include "consoleTools/basicGraphic/basicgraphic.h"
-const float ship::_speed_step=0.0005; //estas unidades son caracter/milisegundo
+const float ship::_speed_step=0.003; //estas unidades son caracter/milisegundo
 const float ship::_speedMax=0.05;
 const float ship::_speedMin= 0;
 
