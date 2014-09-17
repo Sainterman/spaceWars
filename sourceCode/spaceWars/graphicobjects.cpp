@@ -111,10 +111,12 @@ int graphicObjects::tic(double time)
 {
     point newPos;
 
+
   //Intenta moverse
     switch(_direction)
     {
     case DIR_LEFT:
+
         newPos.setX(_pos.x()-_speed*time);
         newPos.setY(_pos.y());
         break;
@@ -159,6 +161,11 @@ int graphicObjects::tic(double time)
         break;
     }
 
+
+    //tomar ultima posicion
+    _lastPos=_pos;
+
+
     //If objInside=true
     if(objInside==true)
     {
@@ -195,7 +202,7 @@ int graphicObjects::checkHit(point p)
 {
 
     p.setX(p.x()-_pos.x());//transformar de global a local
-    p.setY(p.y()-_pos.x());
+    p.setY(p.y()-_pos.y());
 
     ///Grabbing reference of current hit Area
     QList<point>* currentHitArea;
@@ -216,7 +223,7 @@ int graphicObjects::checkHit(point p)
     }
 
     for(int i=0;i<currentHitArea->size();i++){
-        if(p==currentHitArea->at(i))
+        if(p.roundAndComp(currentHitArea->at(i)))
             return 1;
     }
     return 0;
@@ -314,6 +321,41 @@ bool graphicObjects::setDir(char dir)
 
 
     _direction=dir;
+
+}
+
+QList<point> graphicObjects::getHitArea()
+{
+    //devuelve en cordenadas globales
+    QList<point> hitArea;
+    switch(_direction)
+    {
+    case DIR_RIGHT:
+
+        hitArea= _hitAreaRight;
+        break;
+    case DIR_LEFT:
+        hitArea= _hitAreaLeft;
+        break;
+    case DIR_DOWN:
+        hitArea= _hitAreaDown;
+        break;
+    case DIR_TOP:
+        hitArea= _hitAreaUp;
+        break;
+    }
+    for(int i=0; i<hitArea.size() ;i++)
+    {
+        hitArea[i].setX(hitArea[i].x()+_pos.x());
+        hitArea[i].setY(hitArea[i].y()+_pos.y());
+    }
+    return hitArea;
+}
+
+int graphicObjects::hit(const graphicObjects *hitObject)
+{
+   _speed=0;
+   _pos=_lastPos;
 
 }
 

@@ -12,11 +12,8 @@ class graphicObjects
 {
 private:
     // 0:RIGHT,1:TOP,2:LEFT,3:DOWN
-
-
     point _pos;
-
-
+    point _lastPos;
     int _fieldLimtRight, _fieldLimitLeft, _fieldLimitTop, _fieldLimitBot;
     QList <point> _hitAreaRight, _hitAreaLeft, _hitAreaUp, _hitAreaDown;
     //unsigned char _keyPosRight, _keyPosLeft, _keySpeedUp, _keySpeedDown;
@@ -30,6 +27,8 @@ protected:
     int _hitPower;
     float _speed;
     char _direction;
+
+
 public:
     //Initialize all members
     graphicObjects();
@@ -43,7 +42,8 @@ public:
     void setSpeed(float s);
     void setFieldLimits(int R, int L, int T, int B);
     bool setDir(char dir);
-
+    QList<point> getHitArea();
+    int hit(const graphicObjects* hitObject);
 };
 
 #endif // GRAPHICOBJECTS_H
