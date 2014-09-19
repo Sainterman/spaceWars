@@ -96,41 +96,66 @@ void ship::speedDown()
 
 void ship::turnRight()
 {
+    float w = getWidth();
+    float h =getHeight();
+    point pos = getPos();
+
     switch(_direction)
     {
     case DIR_RIGHT:
+        pos.setX(pos.x()-h);
+        pos.setY(pos.y());
         setDir(DIR_DOWN);
         break;
     case DIR_DOWN:
+        pos.setX(pos.x()-(h-w));
+        pos.setY(pos.y()-w);
         setDir(DIR_LEFT);
         break;
     case DIR_LEFT:
+        pos.setX(pos.x()+w);
+        pos.setY(pos.y()-(w-h));
         setDir(DIR_TOP);
         break;
     case DIR_TOP:
+        pos.setX(pos.x());
+        pos.setY(pos.y()+h);
         setDir(DIR_RIGHT);
         break;
      }
+    setPos(pos);
 
 }
 
 void ship::turnLeft()
 {
+    float w = getWidth();
+    float h =getHeight();
+    point pos = getPos();
     switch(_direction)
     {
     case DIR_RIGHT:
+        pos.setX(pos.x()-h);
+        pos.setY(pos.y()-(w-h));
         setDir(DIR_TOP);
         break;
     case DIR_DOWN:
+        pos.setX(pos.x());
+        pos.setY(pos.y()-w);
         setDir(DIR_RIGHT);
         break;
     case DIR_LEFT:
+        pos.setX(pos.x()+w);
+        pos.setY(pos.y());
         setDir(DIR_DOWN);
         break;
     case DIR_TOP:
+        pos.setX(pos.x()-(h-w));
+        pos.setY(pos.y()+h);
         setDir(DIR_LEFT);
         break;
     }
+    setPos(pos);
 }
 
 void ship::fire1()//disparo Tipo 1

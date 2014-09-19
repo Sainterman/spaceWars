@@ -44,6 +44,9 @@ public:
     bool setDir(char dir);
     QList<point> getHitArea();
     int hit(const graphicObjects* hitObject);
+    float getHeight();
+    float getWidth();
+    point getPos();
 };
 
 #endif // GRAPHICOBJECTS_H

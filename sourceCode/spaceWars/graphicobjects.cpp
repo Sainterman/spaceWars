@@ -36,10 +36,9 @@ void graphicObjects::initGraphicObject(point pos, float speed, char dir, int flR
 
 
     setDir(dir);
-    setPos(pos);
     setSpeed(speed);
     setFieldLimits(flR,flL,flT,flB);
-
+    setPos(pos);
 
 }
 
@@ -166,36 +165,41 @@ int graphicObjects::tic(double time)
     _lastPos=_pos;
 
 
-    //If objInside=true
-    if(objInside==true)
-    {
-        _pos=newPos;
-    }
-    else
-    {
-        switch(_direction)
-        {
-        case DIR_RIGHT:
-            _pos.setX(_fieldLimtRight-_edgeRight-1);
-            //_direction=DIR_DOWN;
+//    //If objInside=true
+//    if(objInside==true)
+//    {
+//        _pos=newPos;
+//    }
+//    else
+//    {
+//        switch(_direction)
+//        {
+//        case DIR_RIGHT:
+//            _pos.setX(_fieldLimtRight-_edgeRight-1);
+//            //_direction=DIR_DOWN;
 
-            break;
-        case DIR_LEFT:
-            _pos.setX(_fieldLimitLeft+1);
-            //_direction=DIR_TOP;
-            break;
-        case DIR_DOWN:
-            _pos.setY(_fieldLimitBot-_edgeBot -1);
-            //_direction=DIR_LEFT;
-            break;
-        case DIR_TOP:
-            _pos.setY(_fieldLimitTop+1);
-            //_direction=DIR_RIGHT;
-            break;
-        }
+//            break;
+//        case DIR_LEFT:
+//            _pos.setX(_fieldLimitLeft+1);
+//            //_direction=DIR_TOP;
+//            break;
+//        case DIR_DOWN:
+//            _pos.setY(_fieldLimitBot-_edgeBot -1);
+//            //_direction=DIR_LEFT;
+//            break;
+//        case DIR_TOP:
+//            _pos.setY(_fieldLimitTop+1);
+//            //_direction=DIR_RIGHT;
+//            break;
+//        }
+//        _speed=0;
+//      }
 
-        _speed=0;
-    }
+    setPos(newPos);
+        if(objInside!=true)
+            _speed=0;
+
+
 }
 
 int graphicObjects::checkHit(point p)
@@ -248,6 +252,18 @@ void graphicObjects::setPos(float x, float y)
 
 void graphicObjects::setPos(point p)
 {
+    if((p.x()+getWidth())>_fieldLimtRight)
+        p.setX(_fieldLimtRight-1-getWidth());
+
+    if(p.xi()<=_fieldLimitLeft)
+        p.setX(_fieldLimitLeft+1);
+
+    if((p.y()+getHeight())>=_fieldLimitBot)
+        p.setY(_fieldLimitBot-1-getHeight());
+
+    if(p.yi()<=_fieldLimitTop)
+        p.setY(_fieldLimitTop+1);
+
     _pos=p;
 }
 
@@ -357,6 +373,23 @@ int graphicObjects::hit(const graphicObjects *hitObject)
    _speed=0;
    _pos=_lastPos;
 
+}
+
+float graphicObjects::getHeight()
+{
+    float height=_edgeBot-_edgeTop;
+    return height;
+}
+
+float graphicObjects::getWidth()
+{
+    float width=_edgeRight-_edgeLeft;
+    return width;
+}
+
+point graphicObjects::getPos()
+{
+    return _pos;
 }
 
 
