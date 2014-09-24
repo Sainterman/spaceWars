@@ -34,7 +34,7 @@ void graphicObjects::initGraphicObject(point pos, float speed, char dir, int flR
 
 
 
-
+    _alive=true;
     setDir(dir);
     setSpeed(speed);
     setFieldLimits(flR,flL,flT,flB);
@@ -195,10 +195,11 @@ int graphicObjects::tic(double time)
 //        _speed=0;
 //      }
 
-    setPos(newPos);
+        setPos(newPos);
         if(objInside!=true)
             _speed=0;
 
+    return 0;
 
 }
 
@@ -368,10 +369,13 @@ QList<point> graphicObjects::getHitArea()
     return hitArea;
 }
 
-int graphicObjects::hit(const graphicObjects *hitObject)
+ int graphicObjects::hit(const graphicObjects* hitObject)
 {
+
    _speed=0;
    _pos=_lastPos;
+
+   return 0;
 
 }
 
@@ -390,6 +394,16 @@ float graphicObjects::getWidth()
 point graphicObjects::getPos()
 {
     return _pos;
+}
+
+int graphicObjects::getHitPower() const
+{
+    return _hitPower;
+}
+
+bool graphicObjects::alive()
+{
+    return _alive;
 }
 
 

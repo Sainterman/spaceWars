@@ -11,6 +11,7 @@
 class graphicObjects
 {
 private:
+
     // 0:RIGHT,1:TOP,2:LEFT,3:DOWN
     point _pos;
     point _lastPos;
@@ -27,7 +28,7 @@ protected:
     int _hitPower;
     float _speed;
     char _direction;
-
+    bool _alive;
 
 public:
     //Initialize all members
@@ -43,10 +44,12 @@ public:
     void setFieldLimits(int R, int L, int T, int B);
     bool setDir(char dir);
     QList<point> getHitArea();
-    int hit(const graphicObjects* hitObject);
+    virtual int hit(const graphicObjects* hitObject);
     float getHeight();
     float getWidth();
     point getPos();
+    int getHitPower() const ;
+    bool alive();
 };
 
 #endif // GRAPHICOBJECTS_H

@@ -27,7 +27,14 @@ int gameController::printUI()
 
     bg::setColor(BG_PINK);
     bg::gotoxy(0,66);
-    std::cout << "PLAYER 1";
+    std::cout << "PLAYER 1 (";
+    bg::setColor(BG_WHITE);
+    if(_player1)
+        std::cout << _player1->getLifes();
+    else
+        std::cout<<"*-*";
+    bg::setColor(BG_PINK);
+    std::cout<<")";
     bg::gotoxy(0,67);
     std::cout<<"Speed Up : W";
     bg::gotoxy(0,68);
@@ -44,7 +51,14 @@ int gameController::printUI()
 
 	bg::setColor(BG_RED);
 	bg::gotoxy(20,66);
-	std::cout<<"PLAYER 2";
+    std::cout<<"PLAYER 2 (";
+    bg::setColor(BG_WHITE);
+    if(_player2)
+        std::cout << _player2->getLifes();
+    else
+        std::cout<<"*-*";
+    bg::setColor(BG_RED);
+    std::cout<<")";
 	bg::gotoxy(20,67);
 	std::cout<<"Speed Up : 5";
 	bg::gotoxy(20,68);
@@ -60,7 +74,14 @@ int gameController::printUI()
 
     bg::setColor(BG_CYAN);
     bg::gotoxy(40,66);
-    std::cout<<"PLAYER 3";
+    std::cout<<"PLAYER 3 (";
+    bg::setColor(BG_WHITE);
+    if(_player3)
+    std::cout << _player3->getLifes();
+    else
+        std::cout<<"*-*";
+    bg::setColor(BG_CYAN);
+    std::cout<<")";
     bg::gotoxy(40,67);
     std::cout<<"Speed Up : I";
     bg::gotoxy(40,68);
@@ -88,7 +109,9 @@ int gameController::run()
 
         for(int i=0;i<_gObjects.size();i++)
             _gObjects[i]->tic(elapsedTime);
+
         checkCollitions();
+        removeDeadObjects();
 
         paintGame();
         recvUserCmd();
@@ -108,18 +131,22 @@ int gameController::initGobjects()
         delete _gObjects[i];
         _gObjects.clear();
     }
+
     //crear tres naves
     ship* sh = new ship(point(_FIELD_WIDTH/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
     sh->confCmd('w','s','d','a',' ','m');
     _gObjects.append(sh);
+    _player1= sh;
 
     sh= new ship(point((_FIELD_WIDTH*2)/4,_FIELD_HEIGHT/2),0,DIR_DOWN,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
     sh->confCmd('5','2','3','1','0','.');
     _gObjects.append(sh);
+    _player2 = sh;
 
     sh= new ship(point((_FIELD_WIDTH*3)/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
     sh->confCmd('i','k','l','j','u','o');
     _gObjects.append(sh);
+    _player3 = sh;
 
     return 0;
 }
@@ -189,6 +216,24 @@ int gameController::checkCollitions()
 
         }
     }
+}
+
+int gameController::removeDeadObjects()
+{
+    for(int i=0;i<_gObjects.size();i++)
+        if(!_gObjects[i]->alive())
+        {
+            if(_gObjects[i]==_player1)
+                _player1= NULL;
+            if(_gObjects[i]==_player2)
+                _player2=NULL;
+            if(_gObjects[i]==_player3)
+                _player3= NULL;
+            delete _gObjects[i];
+            _gObjects.removeAt(i);
+            i--;
+
+        }
 }
 
 

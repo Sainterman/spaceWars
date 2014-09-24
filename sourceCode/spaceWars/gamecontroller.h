@@ -17,6 +17,10 @@ private:
     int paintGame();//pibta el espacio de juego
     int recvUserCmd();
     int checkCollitions();
+    int removeDeadObjects();
+    ship* _player1;
+    ship* _player2;
+    ship* _player3;
 
 
 protected:

@@ -54,8 +54,10 @@ void ship::initGraphicObject(point pos, float speed, char dir, int flR, int flL,
     _graphUp.append(graphicChar(point(1,0),'^',BG_GREEN));
 
     fillHitArea();
+
     setDir(DIR_RIGHT);
     _hitPower=2;
+    _lifes=9;
 
     _sUp = 0;
     _sDown = 0;
@@ -74,6 +76,7 @@ ship::ship()
 ship::ship(point pos, float speed, char dir, int flR, int flL, int flT, int flB)
 {
     initGraphicObject(pos,speed,dir,flR,flL,flT,flB);
+
 }
 
 
@@ -179,8 +182,26 @@ int ship::confCmd(int sUp, int sDown, int turnRight, int turnLeft, int fire1, in
     _fire1 = fire1;
     _fire2 = fire2;
 
+    return 0;
+}
+
+int ship::getLifes()
+{
+    return _lifes;
 
 }
+
+int ship::hit(const graphicObjects *hitObject)
+{
+    graphicObjects::hit(hitObject);
+    _lifes -= hitObject->getHitPower();
+    if(_lifes<=0)
+        _alive=false;
+
+    return 0;
+}
+
+
 int ship::recvCmd(int cmd)
 {
     if(!(_sUp && _sDown && _turnLeft && _turnRight && _fire1 && _fire2))
