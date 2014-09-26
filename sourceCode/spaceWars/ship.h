@@ -1,6 +1,7 @@
 #ifndef SHIP_H
 #define SHIP_H
 #include "graphicobjects.h"
+#include "bullet.h"
 
 class ship:public graphicObjects
 {
@@ -9,6 +10,7 @@ private:
     static const float _speed_step;
     static const float _speedMax;
     static const float _speedMin;
+    static const float _bulletSpeed;
     int _sUp,_sDown,_turnRight,_turnLeft,_fire1,_fire2;
     int _lifes;
 
@@ -20,6 +22,8 @@ public:
     void speedDown();
     void turnRight();
     void turnLeft();
+    QList<graphicObjects*> createGo();
+    QList<graphicObjects*> _firedBullet;
     void fire1();//disparo 1
     void fire2();//disparo 2
     int recvCmd(int cmd);

@@ -1,9 +1,10 @@
 #include "ship.h"
 #include "consoleTools/basicGraphic/basicgraphic.h"
+
 const float ship::_speed_step=0.003; //estas unidades son caracter/milisegundo
 const float ship::_speedMax=0.05;
 const float ship::_speedMin= 0;
-
+const float ship::_bulletSpeed= ship::_speedMax;
 void ship::initGraphicObject(point pos, float speed, char dir, int flR, int flL, int flT, int flB)
 {
 
@@ -55,7 +56,7 @@ void ship::initGraphicObject(point pos, float speed, char dir, int flR, int flL,
 
     fillHitArea();
 
-    setDir(DIR_RIGHT);
+    setDir(dir);
     _hitPower=2;
     _lifes=9;
 
@@ -161,8 +162,39 @@ void ship::turnLeft()
     setPos(pos);
 }
 
+QList<graphicObjects *> ship::createGo()
+{
+    QList<graphicObjects*> ret = _firedBullet;
+    _firedBullet.clear();
+    return ret;
+}
+
 void ship::fire1()//disparo Tipo 1
 {
+    bullet* b = new bullet(getPos(),_speed+_bulletSpeed,_direction,_fieldLimtRight,_fieldLimitLeft,_fieldLimitTop,_fieldLimitBot);
+
+    float h=getHeight();
+    float w=getWidth();
+    switch (_direction)
+
+    {
+    case DIR_RIGHT:
+        b->setPos(point(getPos().x()+h,getPos().y()+(w/2)));
+
+        break;
+    case DIR_LEFT:
+        b->setPos(point(getPos().x()-1,getPos().y()+(w/2)));
+        break;
+    case DIR_DOWN:
+        b->setPos(point(getPos().x()+(w/2),getPos().y()+h));
+        break;
+    case DIR_TOP:
+        b->setPos(point(getPos().x()+(w/2),getPos().y()-1));
+        break;
+    default:
+        break;
+    }
+    _firedBullet.append(b);
 
 }
 

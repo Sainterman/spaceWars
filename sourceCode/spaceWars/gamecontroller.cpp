@@ -104,15 +104,16 @@ int gameController::run()
     int time= msTime();
     for (;;)
     {
+        addNewGraphObj();
         int elapsedTime= msTime()-time;
         time=msTime();
-
+         addNewGraphObj();
         for(int i=0;i<_gObjects.size();i++)
             _gObjects[i]->tic(elapsedTime);
 
+
         checkCollitions();
         removeDeadObjects();
-
         paintGame();
         recvUserCmd();
 
@@ -216,6 +217,13 @@ int gameController::checkCollitions()
 
         }
     }
+}
+
+int gameController::addNewGraphObj()
+{
+    for(int i=0;i<_gObjects.size();i++)
+        _gObjects.append(_gObjects[i]->createGo());
+    return 0;
 }
 
 int gameController::removeDeadObjects()

@@ -316,7 +316,6 @@ int main(int argc, char *argv[])
     }*/
     gameController SpaceWars;
     SpaceWars.run();
-
     bg::gotoxy(0,40);
 
     return 0;
