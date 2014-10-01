@@ -1,6 +1,6 @@
 #include "gamecontroller.h"
 const int gameController::_FIELD_HEIGHT=65;
-const int gameController::_FIELD_WIDTH=70;
+const int gameController::_FIELD_WIDTH=200;
 
 int gameController::printUI()
 {
@@ -107,7 +107,7 @@ int gameController::run()
         addNewGraphObj();
         int elapsedTime= msTime()-time;
         time=msTime();
-         addNewGraphObj();
+
         for(int i=0;i<_gObjects.size();i++)
             _gObjects[i]->tic(elapsedTime);
 

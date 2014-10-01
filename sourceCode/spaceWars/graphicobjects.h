@@ -16,7 +16,7 @@ private:
     point _pos;
     point _lastPos;
 
-    QList <point> _hitAreaRight, _hitAreaLeft, _hitAreaUp, _hitAreaDown;
+
     //unsigned char _keyPosRight, _keyPosLeft, _keySpeedUp, _keySpeedDown;
     int _edgeRight, _edgeLeft, _edgeTop, _edgeBot;
 
@@ -30,6 +30,7 @@ protected:
     char _direction;
     bool _alive;
     int _fieldLimtRight, _fieldLimitLeft, _fieldLimitTop, _fieldLimitBot;
+    QList <point> _hitAreaRight, _hitAreaLeft, _hitAreaUp, _hitAreaDown;
 
 public:
     //Initialize all members
@@ -40,7 +41,7 @@ public:
     int checkHit(point p);
     int checkHit(const QList<point> &points);
     void setPos(float x, float y);
-    int setPos(point p);
+    virtual int setPos(point p);
     void setSpeed(float s);
     void setFieldLimits(int R, int L, int T, int B);
     bool setDir(char dir);

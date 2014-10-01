@@ -2,7 +2,7 @@
 #define SHIP_H
 #include "graphicobjects.h"
 #include "bullet.h"
-
+#include "bullet2.h"
 class ship:public graphicObjects
 {
 private:

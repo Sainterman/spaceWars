@@ -254,7 +254,7 @@ void graphicObjects::setPos(float x, float y)
 int graphicObjects::setPos(point p)
 {
     int retValue=0;
-    if((p.x()+getWidth())>_fieldLimtRight)
+    if((p.xi()+getWidth())>_fieldLimtRight)
     {
         p.setX(_fieldLimtRight-1-getWidth());
         retValue=1;
@@ -266,7 +266,7 @@ int graphicObjects::setPos(point p)
         retValue=1;
     }
 
-    if((p.y()+getHeight())>=_fieldLimitBot)
+    if(p.yi()+ getHeight()>=_fieldLimitBot)
     {
         p.setY(_fieldLimitBot-1-getHeight());
         retValue=1;
@@ -306,41 +306,41 @@ bool graphicObjects::setDir(char dir)
     ///]Referencia del actual hit area
 
 
-    QList<point>* currentHitArea;
+    QList<graphicChar>* currentGraphic;
     switch(dir)
     {
     case DIR_RIGHT:
-        currentHitArea=&_hitAreaRight;
+        currentGraphic=&_graphRight;
         break;
     case DIR_LEFT:
-        currentHitArea=&_hitAreaLeft;
+        currentGraphic=&_graphLeft;
         break;
     case DIR_DOWN:
-        currentHitArea=&_hitAreaDown;
+        currentGraphic=&_graphDown;
         break;
     case DIR_TOP:
-        currentHitArea=&_hitAreaUp;
+        currentGraphic=&_graphUp;
         break;
     }
 
-    if(currentHitArea->size()==0)
+    if( currentGraphic->size()==0)
         return false;
 
-    int maxX=currentHitArea->at(0).x();
-    int minX=currentHitArea->at(0).x();
-    int maxY=currentHitArea->at(0).y();
-    int minY=currentHitArea->at(0).y();
+    int maxX= currentGraphic->at(0).pos().x();
+    int minX= currentGraphic->at(0).pos().x();
+    int maxY= currentGraphic->at(0).pos().y();
+    int minY= currentGraphic->at(0).pos().y();
 
-    for (int i=0; i<currentHitArea->size();i++)
+    for (int i=0; i< currentGraphic->size();i++)
     {
-        if(currentHitArea->at(i).x()>maxX)
-            maxX=currentHitArea->at(i).x();
-        if(currentHitArea->at(i).x()<minX)
-            minX=currentHitArea->at(i).x();
-        if(currentHitArea->at(i).y()>maxY)
-            maxY=currentHitArea->at(i).y();
-        if(currentHitArea->at(i).y()<minY)
-            minY=currentHitArea->at(i).y();
+        if( currentGraphic->at(i).pos().x()>maxX)
+            maxX= currentGraphic->at(i).pos().x();
+        if( currentGraphic->at(i).pos().x()<minX)
+            minX= currentGraphic->at(i).pos().x();
+        if( currentGraphic->at(i).pos().y()>maxY)
+            maxY= currentGraphic->at(i).pos().y();
+        if( currentGraphic->at(i).pos().y()<minY)
+            minY= currentGraphic->at(i).pos().y();
     }
     _edgeRight=maxX;
     _edgeLeft=minX;
@@ -395,13 +395,13 @@ QList<point> graphicObjects::getHitArea()
 
 float graphicObjects::getHeight()
 {
-    float height=_edgeBot-_edgeTop;
+    float height=_edgeBot-_edgeTop+1;
     return height;
 }
 
 float graphicObjects::getWidth()
 {
-    float width=_edgeRight-_edgeLeft;
+    float width=_edgeRight-_edgeLeft+1;
     return width;
 }
 

@@ -179,17 +179,17 @@ void ship::fire1()//disparo Tipo 1
 
     {
     case DIR_RIGHT:
-        b->setPos(point(getPos().x()+h,getPos().y()+(w/2)));
+        b->setPos(point(getPos().x()+w,getPos().y()+(h/2)));
 
         break;
     case DIR_LEFT:
-        b->setPos(point(getPos().x()-1,getPos().y()+(w/2)));
+        b->setPos(point(getPos().x()-b->getWidth(),getPos().y()+(h/2)));
         break;
     case DIR_DOWN:
         b->setPos(point(getPos().x()+(w/2),getPos().y()+h));
         break;
     case DIR_TOP:
-        b->setPos(point(getPos().x()+(w/2),getPos().y()-1));
+        b->setPos(point(getPos().x()+(w/2),getPos().y()-b->getHeight()));
         break;
     default:
         break;
@@ -200,6 +200,29 @@ void ship::fire1()//disparo Tipo 1
 
 void ship::fire2()//disparo tipo 2
 {
+    bullet2* b = new bullet2(getPos(),_fieldLimtRight,_fieldLimitLeft,_fieldLimitTop,_fieldLimitBot);
+
+    float h=getHeight();
+    float w=getWidth();
+    switch (_direction)
+
+    {
+    case DIR_RIGHT:
+        b->setPos(point(getPos().x()-b->getWidth(),getPos().y()+(h/2)));
+        break;
+    case DIR_LEFT:
+        b->setPos(point(getPos().x()+w,getPos().y()+(h/2)));
+        break;
+    case DIR_DOWN:
+        b->setPos(point(getPos().x()+(w/2),getPos().y()-b->getHeight()));
+        break;
+    case DIR_TOP:
+        b->setPos(point(getPos().x()+(w/2),getPos().y()+h));
+        break;
+    default:
+        break;
+    }
+    _firedBullet.append(b);
 
 }
 

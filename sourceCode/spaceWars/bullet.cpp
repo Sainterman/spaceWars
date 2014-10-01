@@ -19,11 +19,23 @@ void bullet::initGraphicObject(point pos, float speed, char dir, int flR, int fl
     _graphUp.append(graphicChar(point(0,1),'s',BG_YELLOW));
     _graphUp.append(graphicChar(point(0,0),'v',BG_YELLOW));
 
-    fillHitArea();
+    _hitAreaRight.clear();
+    _hitAreaRight.append(point(1,0));
+
+    _hitAreaLeft.clear();
+    _hitAreaLeft.append(point (0,0));
+
+    _hitAreaDown.clear();
+    _hitAreaDown.append(point (0,1));
+
+    _hitAreaUp.clear();
+    _hitAreaUp.append(point(0,0));
+
+
 
     setDir(dir);
 
-    _hitPower=2;
+    _hitPower=6;
 
 }
 
@@ -39,10 +51,11 @@ bullet::bullet(point pos, float speed, char dir, int flR, int flL, int flT, int 
 
 int bullet::hit(const graphicObjects* hitObject)
 {
-    int r = graphicObjects::hit(hitObject);
+    //int r = graphicObjects::hit(hitObject);
     _alive=false;
 
-    return r;
+    return 0;
+    //return r;
 
 }
 
