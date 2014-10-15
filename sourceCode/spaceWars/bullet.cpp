@@ -35,7 +35,7 @@ void bullet::initGraphicObject(point pos, float speed, char dir, int flR, int fl
 
     setDir(dir);
 
-    _hitPower=6;
+    _hitPower=2;
 
 }
 

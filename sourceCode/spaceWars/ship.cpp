@@ -248,6 +248,7 @@ int ship::getLifes()
 
 int ship::hit(const graphicObjects *hitObject)
 {
+
     graphicObjects::hit(hitObject);
     _lifes -= hitObject->getHitPower();
     if(_lifes<=0)
