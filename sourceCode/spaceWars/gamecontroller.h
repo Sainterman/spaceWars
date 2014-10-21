@@ -14,7 +14,7 @@ private:
     const static int _FIELD_WIDTH;
     int initGobjects();//inicializo los graphicObjects
     int msTime();//leo el tiempo del sistema en milisegundos
-    int paintGame();//pibta el espacio de juego
+    int paintGame();//pinta el espacio de juego
     int recvUserCmd();
     int checkCollitions();
     int addNewGraphObj();

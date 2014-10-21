@@ -1,6 +1,6 @@
 #include "gamecontroller.h"
 const int gameController::_FIELD_HEIGHT=40;
-const int gameController::_FIELD_WIDTH=200;
+const int gameController::_FIELD_WIDTH=70;
 
 int gameController::printUI()
 {
@@ -24,7 +24,7 @@ int gameController::printUI()
         Area[i].paint(point(0,0));
     }
 
-
+    //player 1
     bg::setColor(BG_PINK);
     bg::gotoxy(0,_FIELD_HEIGHT+1);
     std::cout << "PLAYER 1 (";
@@ -47,8 +47,16 @@ int gameController::printUI()
     std::cout<<"Fire 1 : SPACE";
     bg::gotoxy(0,_FIELD_HEIGHT+7);
     std::cout<<"Fire 2 : M";
+    bg::gotoxy(0,_FIELD_HEIGHT+8);
+    std::cout << "mines (";
+    bg::setColor(BG_GREEN);
+    if(_player1)
+        std::cout << _player1->_numBullet2;
+    bg::setColor(BG_PINK);
+    std::cout<<")";
 
 
+    //player 2
 	bg::setColor(BG_RED);
     bg::gotoxy(20,_FIELD_HEIGHT+1);
     std::cout<<"PLAYER 2 (";
@@ -71,7 +79,15 @@ int gameController::printUI()
     std::cout<<"Fire 1 : 0";
     bg::gotoxy(20,_FIELD_HEIGHT+7);
     std::cout<<"Fire 2 : .";
+    bg::gotoxy(20,_FIELD_HEIGHT+8);
+    std::cout << "mines (";
+    bg::setColor(BG_GREEN);
+    if(_player2)
+        std::cout << _player2->_numBullet2;
+    bg::setColor(BG_RED);
+    std::cout<<")";
 
+    //player 3
     bg::setColor(BG_CYAN);
     bg::gotoxy(40,_FIELD_HEIGHT+1);
     std::cout<<"PLAYER 3 (";
@@ -94,6 +110,13 @@ int gameController::printUI()
     std::cout<<"Fire 1 : U";
     bg::gotoxy(40,_FIELD_HEIGHT+7);
     std::cout<<"Fire 2 : O";
+    bg::gotoxy(40,_FIELD_HEIGHT+8);
+    std::cout << "mines (";
+    bg::setColor(BG_GREEN);
+    if(_player3)
+        std::cout << _player3->_numBullet2;
+    bg::setColor(BG_CYAN);
+    std::cout<<")";
 
     return 0;
 }
@@ -243,6 +266,7 @@ int gameController::removeDeadObjects()
 
         }
 }
+
 
 
 

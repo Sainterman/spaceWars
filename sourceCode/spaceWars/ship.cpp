@@ -59,13 +59,23 @@ void ship::initGraphicObject(point pos, float speed, char dir, int flR, int flL,
     setDir(dir);
     _hitPower=2;
     _lifes=9;
-
+    _numBullet2=3;
     _sUp = 0;
     _sDown = 0;
     _turnLeft = 0;
     _turnRight = 0;
     _fire1 = 0;
     _fire2 = 0;
+
+
+}
+
+int ship::msTime()
+{
+    struct timeval tV;
+    gettimeofday(&tV,NULL);
+    int ms = tV.tv_sec * 1000 + tV.tv_usec/1000;
+    return ms;
 
 }
 
@@ -171,6 +181,7 @@ QList<graphicObjects *> ship::createGo()
 
 void ship::fire1()//disparo Tipo 1
 {
+    _time = msTime();
     bullet* b = new bullet(getPos(),_speed+_bulletSpeed,_direction,_fieldLimtRight,_fieldLimitLeft,_fieldLimitTop,_fieldLimitBot);
 
     float h=getHeight();
@@ -194,18 +205,19 @@ void ship::fire1()//disparo Tipo 1
     default:
         break;
     }
+
     _firedBullet.append(b);
 
 }
 
 void ship::fire2()//disparo tipo 2
 {
+    _time=msTime();
     bullet2* b = new bullet2(getPos(),_fieldLimtRight,_fieldLimitLeft,_fieldLimitTop,_fieldLimitBot);
 
     float h=getHeight();
     float w=getWidth();
     switch (_direction)
-
     {
     case DIR_RIGHT:
         b->setPos(point(getPos().x()-b->getWidth(),getPos().y()+(h/2)));
@@ -222,7 +234,10 @@ void ship::fire2()//disparo tipo 2
     default:
         break;
     }
+    _numBullet2--;
+
     _firedBullet.append(b);
+
 
 }
 
@@ -260,9 +275,11 @@ int ship::hit(const graphicObjects *hitObject)
 
 int ship::recvCmd(int cmd)
 {
+
+
+
     if(!(_sUp && _sDown && _turnLeft && _turnRight && _fire1 && _fire2))
         return -1;
-
 
     if(cmd == _sUp)
         speedUP();
@@ -273,19 +290,24 @@ int ship::recvCmd(int cmd)
     else if(cmd == _turnRight)
         turnRight();
     else if(cmd == _fire1)
-        fire1();
+    {
+            int elapsedTime=msTime()-_time;
+                if(elapsedTime>500)
+                    fire1();
+
+    }
     else if(cmd == _fire2)
-        fire2();
+    {
+            int elapsedTime=msTime();-_time;
+            if(elapsedTime>500)
+            {
+                if(_numBullet2>0)
+                    fire2();
+            }
+    }
     else
         return 0;
-
-
-
     return 1;
-
-
 }
-
-
 
 

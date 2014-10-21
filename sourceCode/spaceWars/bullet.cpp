@@ -17,7 +17,7 @@ void bullet::initGraphicObject(point pos, float speed, char dir, int flR, int fl
 
     _graphUp.clear();
     _graphUp.append(graphicChar(point(0,1),'s',BG_YELLOW));
-    _graphUp.append(graphicChar(point(0,0),'v',BG_YELLOW));
+    _graphUp.append(graphicChar(point(0,0),'^',BG_YELLOW));
 
     _hitAreaRight.clear();
     _hitAreaRight.append(point(1,0));

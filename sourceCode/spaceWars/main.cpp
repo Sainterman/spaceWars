@@ -7,7 +7,7 @@
 #include "gamecontroller.h"
 int main(int argc, char *argv[])
 {
-    /*
+
     graphicChar c1(point(4,0),'/',BG_RED);
     graphicChar c2(point(5,0),'/',BG_BLUE);
     graphicChar c3(point(3,1),219,BG_GREEN);
@@ -254,7 +254,7 @@ int main(int argc, char *argv[])
     d31.paint(offsetD);
     d32.paint(offsetD);
     d33.paint(offsetD);
-    */
+
 
 
     /*

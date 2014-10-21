@@ -1,8 +1,5 @@
 #include "bullet2.h"
 
-
-
-
 void bullet2::initGraphicObject(point pos, float speed, char dir, int flR, int flL, int flT, int flB)
 {
     graphicObjects::initGraphicObject(pos,speed,dir,flR,flL,flT,flB);
@@ -14,11 +11,7 @@ void bullet2::initGraphicObject(point pos, float speed, char dir, int flR, int f
     _hitAreaRight.clear();
     _hitAreaRight.append(point(0,0));
 
-
-
-
     setDir(dir);
-
 
     _hitPower=3;
 }
