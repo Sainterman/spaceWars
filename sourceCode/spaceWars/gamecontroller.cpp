@@ -123,6 +123,7 @@ int gameController::printUI()
 
 int gameController::run()
 {
+    pickShip();
     initGobjects();
     int time= msTime();
     for (;;)
@@ -156,23 +157,71 @@ int gameController::initGobjects()
         _gObjects.clear();
     }
 
-    //crear tres naves
+
+
+        if(_Descition[0]==1)
+        {
+            ship* sh = new ship(point(_FIELD_WIDTH/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
+            sh->confCmd('w','s','d','a',' ','m');
+            _gObjects.append(sh);
+            _player1= sh;
+        }
+        else
+        {
+            ship2* sh= new ship2(point(_FIELD_WIDTH/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
+            sh->confCmd('w','s','d','a',' ','m');
+            _gObjects.append(sh);
+            _player1= sh;;
+        }
+
+        if(_Descition[1]==1)
+        {
+            ship* sh= new ship(point((_FIELD_WIDTH*2)/4,_FIELD_HEIGHT/2),0,DIR_DOWN,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
+             sh->confCmd('5','2','3','1','0','.');
+             _gObjects.append(sh);
+             _player2 = sh;
+        }
+        else
+        {
+            ship2* sh= new ship2(point((_FIELD_WIDTH*2)/4,_FIELD_HEIGHT/2),0,DIR_DOWN,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
+             sh->confCmd('5','2','3','1','0','.');
+             _gObjects.append(sh);
+             _player2 = sh;
+        }
+
+        if(_Descition[2]==1)
+        {
+            ship* sh= new ship(point((_FIELD_WIDTH*3)/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
+             sh->confCmd('i','k','l','j','u','o');
+             _gObjects.append(sh);
+             _player3 = sh;
+        }
+        else
+        {
+            ship2* sh= new ship2(point((_FIELD_WIDTH*3)/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
+             sh->confCmd('i','k','l','j','u','o');
+             _gObjects.append(sh);
+             _player3 = sh;
+        }
+
+   /* //crear tres naves
     ship* sh = new ship(point(_FIELD_WIDTH/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
     sh->confCmd('w','s','d','a',' ','m');
     _gObjects.append(sh);
     _player1= sh;
 
-    sh= new ship(point((_FIELD_WIDTH*2)/4,_FIELD_HEIGHT/2),0,DIR_DOWN,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
+   ship sh= new ship(point((_FIELD_WIDTH*2)/4,_FIELD_HEIGHT/2),0,DIR_DOWN,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
     sh->confCmd('5','2','3','1','0','.');
     _gObjects.append(sh);
     _player2 = sh;
 
-    sh= new ship(point((_FIELD_WIDTH*3)/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
+   ship sh= new ship(point((_FIELD_WIDTH*3)/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
     sh->confCmd('i','k','l','j','u','o');
     _gObjects.append(sh);
     _player3 = sh;
-
+*/
     return 0;
+
 }
 
 int gameController::msTime()
@@ -270,8 +319,39 @@ int gameController::removeDeadObjects()
 
 
 
+
 gameController::gameController()
 {
 
+}
+
+QList<int> gameController::pickShip()
+{
+    /*
+     primero:
+     dibujar
+     las naves.
+     segundo.
+     preguntar que nave quiere, a cada jugador.
+     //como?
+        preguntamos tres veces, primero juador1, luego jugador2 y luego jugador 3, con un cin.
+
+
+     */
+    _Descition;
+    int p1, p2, p3;
+    std::cout<<"jugador1, porfavor elija con que nave quiere jugar: 1 o 2 "<<std::endl;
+    std::cin>>p1;
+    _Descition.append(p1);
+    std::cout<<"jugador2, porfavor elija con que nave quiere jugar: 1 o 2 "<<std::endl;
+    std::cin>>p2;
+    _Descition.append(p2);
+    std::cout<<"jugador3, porfavor elija con que nave quiere jugar: 1 o 2 "<<std::endl;
+    std::cin>>p3;
+    _Descition.append(p3);
+
+
+
+    return _Descition;
 }
 
