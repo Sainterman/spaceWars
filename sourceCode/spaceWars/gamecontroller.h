@@ -20,10 +20,11 @@ private:
     int checkCollitions();
     int addNewGraphObj();
     int removeDeadObjects();
-    QList<int> _Descition;
+    //QList<int> _Descition;
     ship* _player1;
     ship* _player2;
     ship* _player3;
+    int _p1, _p2, _p3;
 
 
 protected:
@@ -31,7 +32,7 @@ protected:
 public:
 
     gameController();
-    QList<int> pickShip();
+    void pickShip(int* p1, int* p2, int* p3);
     int printUI();//Dibuja la interfaz gráfica
     int run();//corre el juego
 

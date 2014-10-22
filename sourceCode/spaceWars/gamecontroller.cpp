@@ -123,7 +123,7 @@ int gameController::printUI()
 
 int gameController::run()
 {
-    pickShip();
+    pickShip(&_p1,&_p2,&_p3);
     initGobjects();
     int time= msTime();
     for (;;)
@@ -141,8 +141,29 @@ int gameController::run()
         paintGame();
         recvUserCmd();
 
-    }
+        //verificamos sisolo queda un jugador vivo
+        int nAlive=0;
+        if(_player1)
+            nAlive++;
+        if(_player2)
+            nAlive++;
+        if(_player3)
+            nAlive++;
+        if(nAlive<=1)
+            break;
 
+    }
+    bg::clrscr();
+    bg::gotoxy(25,20);
+    std::cout<<"Player ";
+    if(_player1)
+        std::cout<<"1";
+    if(_player2)
+        std::cout<<"2";
+    if(_player3)
+        std::cout<<"3";
+    std::cout<<" Wins!"<<"/n";
+    bg::gotoxy(0,49);
     return 0;
 
 
@@ -159,7 +180,7 @@ int gameController::initGobjects()
 
 
 
-        if(_Descition[0]==1)
+        if(_p1==1)
         {
             ship* sh = new ship(point(_FIELD_WIDTH/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
             sh->confCmd('w','s','d','a',' ','m');
@@ -174,7 +195,7 @@ int gameController::initGobjects()
             _player1= sh;;
         }
 
-        if(_Descition[1]==1)
+        if(_p2==1)
         {
             ship* sh= new ship(point((_FIELD_WIDTH*2)/4,_FIELD_HEIGHT/2),0,DIR_DOWN,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
              sh->confCmd('5','2','3','1','0','.');
@@ -189,7 +210,7 @@ int gameController::initGobjects()
              _player2 = sh;
         }
 
-        if(_Descition[2]==1)
+        if(_p3==1)
         {
             ship* sh= new ship(point((_FIELD_WIDTH*3)/4,_FIELD_HEIGHT/2),0,DIR_TOP,_FIELD_WIDTH,0,0,_FIELD_HEIGHT);
              sh->confCmd('i','k','l','j','u','o');
@@ -314,6 +335,7 @@ int gameController::removeDeadObjects()
             i--;
 
         }
+    return 0;
 }
 
 
@@ -325,7 +347,7 @@ gameController::gameController()
 
 }
 
-QList<int> gameController::pickShip()
+void gameController::pickShip(int* p1, int* p2, int* p3)
 {
     /*
      primero:
@@ -338,20 +360,18 @@ QList<int> gameController::pickShip()
 
 
      */
-    _Descition;
-    int p1, p2, p3;
+
+
     std::cout<<"jugador1, porfavor elija con que nave quiere jugar: 1 o 2 "<<std::endl;
-    std::cin>>p1;
-    _Descition.append(p1);
+    std::cin>>(*p1);
+
     std::cout<<"jugador2, porfavor elija con que nave quiere jugar: 1 o 2 "<<std::endl;
-    std::cin>>p2;
-    _Descition.append(p2);
+    std::cin>>(*p2);
+
     std::cout<<"jugador3, porfavor elija con que nave quiere jugar: 1 o 2 "<<std::endl;
-    std::cin>>p3;
-    _Descition.append(p3);
+    std::cin>>(*p3);
 
 
 
-    return _Descition;
 }
 

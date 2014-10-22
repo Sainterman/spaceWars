@@ -7,7 +7,7 @@
 class ship:public graphicObjects
 {
 private:
-    void initGraphicObject(point pos, float speed, char dir, int flR, int flL, int flT, int flB);
+
     static const float _speed_step;
     static const float _speedMax;
     static const float _speedMin;
@@ -17,6 +17,7 @@ private:
 
 
 protected:
+    void initGraphicObject(point pos, float speed, char dir, int flR, int flL, int flT, int flB);
     int _time;
     int msTime();
 
@@ -30,8 +31,8 @@ public:
     void turnLeft();
     QList<graphicObjects*> createGo();
     QList<graphicObjects*> _firedBullet;
-    void fire1();//disparo 1
-    void fire2();//disparo 2
+    virtual void fire1();//disparo 1
+    virtual void fire2();//disparo 2
     int recvCmd(int cmd);
     int confCmd(int sUp,int sDown,int turnRight, int turnLeft, int fire1, int fire2 );//Llamar antes de recvCmd
     int getLifes();

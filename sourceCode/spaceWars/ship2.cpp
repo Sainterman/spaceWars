@@ -3,7 +3,7 @@
 
 void ship2::initGraphicObject(point pos, float speed, char dir, int flR, int flL, int flT, int flB)
 {
-    graphicObjects::initGraphicObject(pos,speed,dir,flR,flL,flT,flB);
+    ship::initGraphicObject(pos,speed,dir,flR,flL,flT,flB);
 
     _graphLeft.clear();
     _graphLeft.append(graphicChar(point(4,0),'/',BG_RED));
@@ -132,6 +132,42 @@ void ship2::initGraphicObject(point pos, float speed, char dir, int flR, int flL
     fillHitArea();
 
     setDir(dir);
+
+
+}
+
+void ship2::fire2()
+{
+    _time=msTime();
+    bullet2* b1 = new bullet2(getPos(),_fieldLimtRight,_fieldLimitLeft,_fieldLimitTop,_fieldLimitBot);
+    bullet2* b2 = new bullet2(getPos(),_fieldLimtRight,_fieldLimitLeft,_fieldLimitTop,_fieldLimitBot);
+    float h=getHeight();
+    float w=getWidth();
+    switch (_direction)
+    {
+    case DIR_RIGHT:
+        b1->setPos(point(getPos().x()-b1->getWidth(),getPos().y()+(h/2)-1));
+        b2->setPos(point(getPos().x()-b2->getWidth(),getPos().y()+(h/2)+1));
+        break;
+    case DIR_LEFT:
+        b1->setPos(point(getPos().x()+w,getPos().y()+(h/2)-1));
+        b2->setPos(point(getPos().x()+w,getPos().y()+(h/2)+1));
+        break;
+    case DIR_DOWN:
+        b1->setPos(point(getPos().x()+(w/2)+1,getPos().y()-b1->getHeight()));
+        b2->setPos(point(getPos().x()+(w/2)-1,getPos().y()-b2->getHeight()));
+        break;
+    case DIR_TOP:
+        b1->setPos(point(getPos().x()+(w/2)+1,getPos().y()+h));
+        b2->setPos(point(getPos().x()+(w/2)-1,getPos().y()+h));
+        break;
+    default:
+        break;
+    }
+    _numBullet2--;
+
+    _firedBullet.append(b1);
+    _firedBullet.append(b2);
 
 
 }
